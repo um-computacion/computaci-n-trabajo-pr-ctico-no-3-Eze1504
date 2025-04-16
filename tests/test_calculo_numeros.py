@@ -46,5 +46,19 @@ class TestCalculoNumeros(unittest.TestCase):
         with self.assertRaises(NumeroDebeSerPositivo):
             ingrese_numero()
 
+    @patch('builtins.input', return_value='3.14')
+    def test_ingreso_decimal(self, patch_input):
+        with self.assertRaises(ValueError):
+            ingrese_numero()
+
+    @patch('builtins.input', return_value='123abc')
+    def test_ingreso_alfanumerico(self, patch_input):
+        with self.assertRaises(ValueError):
+            ingrese_numero()
+
+
+    
+
+
 if __name__ == '__main__':
     unittest.main() 
