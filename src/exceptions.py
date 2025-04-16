@@ -16,10 +16,13 @@ def ingrese_numero():
         NumeroDebeSerPositivo: Si el número ingresado es negativo.
     """
     entrada = input("Ingrese un número: ")
+    entrada = entrada.strip()
     try:
         numero = int(entrada)
-        if numero < 0:
-            raise NumeroDebeSerPositivo("El número debe ser positivo")
-        return numero
     except ValueError:
-        raise ValueError("La entrada debe ser un número válido") 
+        raise ValueError("La entrada debe ser un número válido")
+
+    if numero < 0:
+        raise NumeroDebeSerPositivo("El número debe ser positivo")
+    
+    return numero
