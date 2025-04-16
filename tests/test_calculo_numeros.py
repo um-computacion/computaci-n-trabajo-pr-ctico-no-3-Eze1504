@@ -41,5 +41,10 @@ class TestCalculoNumeros(unittest.TestCase):
         numero = ingrese_numero()
         self.assertEqual(numero, 42)
 
+    @patch('builtins.input', return_value='-9999')
+    def test_ingreso_numero_muy_negativo(self, patch_input):
+        with self.assertRaises(NumeroDebeSerPositivo):
+            ingrese_numero()
+
 if __name__ == '__main__':
     unittest.main() 
