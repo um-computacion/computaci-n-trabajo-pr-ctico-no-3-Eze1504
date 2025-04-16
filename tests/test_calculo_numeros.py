@@ -31,5 +31,15 @@ class TestCalculoNumeros(unittest.TestCase):
         with self.assertRaises(ValueError):
             ingrese_numero()
 
+    @patch('builtins.input', return_value='0')
+    def test_ingreso_cero(self, patch_input):
+        numero = ingrese_numero()
+        self.assertEqual(numero, 0)
+
+    @patch('builtins.input', return_value='  42  ')
+    def test_ingreso_con_espacios(self, patch_input):
+        numero = ingrese_numero()
+        self.assertEqual(numero, 42)
+
 if __name__ == '__main__':
     unittest.main() 
